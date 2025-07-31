@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { ArrowLeft, Users, Shield, Heart, Zap } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+import { ArrowLeft } from "lucide-react"
 
 export default function Component() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -171,11 +171,11 @@ export default function Component() {
         Back to Home
       </Button>
 
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto flex items-center justify-center min-h-screen">
         {/* About Header */}
         <div className="text-center mb-12">
           <h1
-            className="text-5xl md:text-7xl text-white mb-4 tracking-wider drop-shadow-lg"
+            className="text-5xl md:text-7xl text-white mb-8 tracking-wider drop-shadow-lg"
             style={{
               fontFamily: "Fredoka One, cursive",
               textShadow: "4px 4px 0px #1E40AF, 8px 8px 0px #1E3A8A",
@@ -183,102 +183,36 @@ export default function Component() {
           >
             ABOUT DOGCOIN
           </h1>
-          <p className="text-blue-600 text-xl md:text-2xl font-medium" style={{ fontFamily: "Poppins, sans-serif" }}>
-            The Most Loyal Cryptocurrency
-          </p>
-        </div>
 
-        {/* About Content */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
-            <CardHeader>
-              <CardTitle
-                className="flex items-center text-white text-2xl"
+          {/* Single About Card */}
+          <Card className="bg-white/10 backdrop-blur-md border-white/20 max-w-3xl mx-auto">
+            <CardContent className="p-8">
+              <p
+                className="text-white/90 text-lg md:text-xl leading-relaxed text-left"
                 style={{ fontFamily: "Poppins, sans-serif" }}
               >
-                <Heart className="w-8 h-8 mr-3 text-red-400" />
-                Our Mission
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-white/90" style={{ fontFamily: "Poppins, sans-serif" }}>
-              <p className="text-lg leading-relaxed">
-                DOGCOIN embodies the unwavering loyalty and unconditional love that dogs represent. We're building a
-                community-driven cryptocurrency that celebrates the bond between humans and their faithful companions.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
-            <CardHeader>
-              <CardTitle
-                className="flex items-center text-white text-2xl"
-                style={{ fontFamily: "Poppins, sans-serif" }}
-              >
-                <Users className="w-8 h-8 mr-3 text-blue-400" />
-                Community First
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-white/90" style={{ fontFamily: "Poppins, sans-serif" }}>
-              <p className="text-lg leading-relaxed">
-                Just like dogs are pack animals, DOGCOIN thrives on community. Every holder is part of our loyal pack,
-                working together to create a better future for cryptocurrency and animal welfare.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
-            <CardHeader>
-              <CardTitle
-                className="flex items-center text-white text-2xl"
-                style={{ fontFamily: "Poppins, sans-serif" }}
-              >
-                <Shield className="w-8 h-8 mr-3 text-green-400" />
-                Security & Trust
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-white/90" style={{ fontFamily: "Poppins, sans-serif" }}>
-              <p className="text-lg leading-relaxed">
-                Built on proven blockchain technology with rigorous security audits. DOGCOIN provides the reliability
-                and trustworthiness that our community deserves, just like a loyal companion.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
-            <CardHeader>
-              <CardTitle
-                className="flex items-center text-white text-2xl"
-                style={{ fontFamily: "Poppins, sans-serif" }}
-              >
-                <Zap className="w-8 h-8 mr-3 text-yellow-400" />
-                Innovation
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-white/90" style={{ fontFamily: "Poppins, sans-serif" }}>
-              <p className="text-lg leading-relaxed">
-                DOGCOIN isn't just another meme coin. We're developing real utility through NFT marketplaces, charity
-                partnerships, and innovative DeFi solutions that benefit both our community and animal welfare
-                organizations.
+                <strong className="text-yellow-400">DOGCOIN</strong> is the most loyal meme cryptocurrency built on the{" "}
+                <strong className="text-blue-400">Base Network</strong>. Born from the spirit of man's best friend,
+                DOGCOIN represents unwavering loyalty, trust, and community bonds that make crypto fun again.
+                <br />
+                <br />
+                As the latest meme hype taking the crypto world by storm, DOGCOIN combines the playful nature of dog
+                memes with serious blockchain technology. Our community-driven approach ensures that every holder is
+                part of the pack, working together to create something truly special.
+                <br />
+                <br />
+                You can find DOGCOIN listed on <strong className="text-green-400">Ape Store</strong> and other major
+                platforms, making it easy for everyone to join our loyal community. Whether you're a seasoned crypto
+                veteran or new to the space, DOGCOIN welcomes all with open paws.
+                <br />
+                <br />
+                Join the pack and experience <strong className="text-purple-400">THE SPIRIT OF LOYALTY</strong> that
+                only DOGCOIN can provide. Together, we're not just building a cryptocurrency – we're building a movement
+                that celebrates the bond between humans and their most faithful companions.
               </p>
             </CardContent>
           </Card>
         </div>
-
-        {/* Vision Statement */}
-        <Card className="bg-white/10 backdrop-blur-md border-white/20">
-          <CardHeader>
-            <CardTitle className="text-center text-white text-3xl mb-4" style={{ fontFamily: "Fredoka One, cursive" }}>
-              Our Vision
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="text-center">
-            <p className="text-white/90 text-xl leading-relaxed" style={{ fontFamily: "Poppins, sans-serif" }}>
-              "To create a cryptocurrency that embodies the best qualities of man's best friend: loyalty, trust,
-              companionship, and unconditional support. DOGCOIN aims to be the most beloved and trusted digital asset in
-              the crypto space, fostering a community that mirrors the unwavering bond between humans and dogs."
-            </p>
-          </CardContent>
-        </Card>
       </div>
     </div>
   )
@@ -294,11 +228,11 @@ export default function Component() {
         Back to Home
       </Button>
 
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-4xl mx-auto flex items-center justify-center min-h-screen">
         {/* Tokenomics Header */}
-        <div className="text-center mb-12">
+        <div className="text-center">
           <h1
-            className="text-5xl md:text-7xl text-white mb-4 tracking-wider drop-shadow-lg"
+            className="text-5xl md:text-7xl text-white mb-12 tracking-wider drop-shadow-lg"
             style={{
               fontFamily: "Fredoka One, cursive",
               textShadow: "4px 4px 0px #1E40AF, 8px 8px 0px #1E3A8A",
@@ -306,196 +240,53 @@ export default function Component() {
           >
             TOKENOMICS
           </h1>
-          <p className="text-blue-600 text-xl md:text-2xl font-medium" style={{ fontFamily: "Poppins, sans-serif" }}>
-            Fair Distribution for a Loyal Community
-          </p>
-        </div>
 
-        {/* Token Info */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <Card className="bg-white/10 backdrop-blur-md border-white/20 text-center">
-            <CardHeader>
-              <CardTitle className="text-white text-2xl" style={{ fontFamily: "Poppins, sans-serif" }}>
-                Total Supply
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-4xl font-bold text-yellow-400 mb-2" style={{ fontFamily: "Fredoka One, cursive" }}>
-                1,000,000,000
-              </p>
-              <p className="text-white/80" style={{ fontFamily: "Poppins, sans-serif" }}>
-                DOGCOIN Tokens
-              </p>
-            </CardContent>
-          </Card>
+          {/* Single Tokenomics Card */}
+          <Card className="bg-white/10 backdrop-blur-md border-white/20 max-w-2xl mx-auto">
+            <CardContent className="p-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                {/* Supply */}
+                <div className="text-center p-6 bg-white/10 rounded-xl border border-white/20">
+                  <h3 className="text-white text-lg mb-2 font-semibold" style={{ fontFamily: "Poppins, sans-serif" }}>
+                    SUPPLY
+                  </h3>
+                  <p className="text-3xl font-bold text-yellow-400" style={{ fontFamily: "Fredoka One, cursive" }}>
+                    1B
+                  </p>
+                </div>
 
-          <Card className="bg-white/10 backdrop-blur-md border-white/20 text-center">
-            <CardHeader>
-              <CardTitle className="text-white text-2xl" style={{ fontFamily: "Poppins, sans-serif" }}>
-                Initial Price
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-4xl font-bold text-green-400 mb-2" style={{ fontFamily: "Fredoka One, cursive" }}>
-                $0.001
-              </p>
-              <p className="text-white/80" style={{ fontFamily: "Poppins, sans-serif" }}>
-                Per Token
-              </p>
-            </CardContent>
-          </Card>
+                {/* Taxes */}
+                <div className="text-center p-6 bg-white/10 rounded-xl border border-white/20">
+                  <h3 className="text-white text-lg mb-2 font-semibold" style={{ fontFamily: "Poppins, sans-serif" }}>
+                    TAXES
+                  </h3>
+                  <p className="text-3xl font-bold text-green-400" style={{ fontFamily: "Fredoka One, cursive" }}>
+                    0%
+                  </p>
+                </div>
 
-          <Card className="bg-white/10 backdrop-blur-md border-white/20 text-center">
-            <CardHeader>
-              <CardTitle className="text-white text-2xl" style={{ fontFamily: "Poppins, sans-serif" }}>
-                Market Cap
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-4xl font-bold text-blue-400 mb-2" style={{ fontFamily: "Fredoka One, cursive" }}>
-                $1M
-              </p>
-              <p className="text-white/80" style={{ fontFamily: "Poppins, sans-serif" }}>
-                Initial Target
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Distribution Chart */}
-        <Card className="bg-white/10 backdrop-blur-md border-white/20 mb-8">
-          <CardHeader>
-            <CardTitle className="text-center text-white text-3xl mb-8" style={{ fontFamily: "Fredoka One, cursive" }}>
-              Token Distribution
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between p-4 bg-white/5 rounded-lg">
-                  <div className="flex items-center">
-                    <div className="w-4 h-4 bg-blue-400 rounded mr-3"></div>
-                    <span className="text-white" style={{ fontFamily: "Poppins, sans-serif" }}>
-                      Public Sale
-                    </span>
-                  </div>
-                  <span className="text-white font-bold">40%</span>
-                </div>
-                <div className="flex items-center justify-between p-4 bg-white/5 rounded-lg">
-                  <div className="flex items-center">
-                    <div className="w-4 h-4 bg-green-400 rounded mr-3"></div>
-                    <span className="text-white" style={{ fontFamily: "Poppins, sans-serif" }}>
-                      Liquidity Pool
-                    </span>
-                  </div>
-                  <span className="text-white font-bold">25%</span>
-                </div>
-                <div className="flex items-center justify-between p-4 bg-white/5 rounded-lg">
-                  <div className="flex items-center">
-                    <div className="w-4 h-4 bg-yellow-400 rounded mr-3"></div>
-                    <span className="text-white" style={{ fontFamily: "Poppins, sans-serif" }}>
-                      Community Rewards
-                    </span>
-                  </div>
-                  <span className="text-white font-bold">15%</span>
-                </div>
-                <div className="flex items-center justify-between p-4 bg-white/5 rounded-lg">
-                  <div className="flex items-center">
-                    <div className="w-4 h-4 bg-purple-400 rounded mr-3"></div>
-                    <span className="text-white" style={{ fontFamily: "Poppins, sans-serif" }}>
-                      Development
-                    </span>
-                  </div>
-                  <span className="text-white font-bold">10%</span>
-                </div>
-                <div className="flex items-center justify-between p-4 bg-white/5 rounded-lg">
-                  <div className="flex items-center">
-                    <div className="w-4 h-4 bg-red-400 rounded mr-3"></div>
-                    <span className="text-white" style={{ fontFamily: "Poppins, sans-serif" }}>
-                      Animal Charity
-                    </span>
-                  </div>
-                  <span className="text-white font-bold">5%</span>
-                </div>
-                <div className="flex items-center justify-between p-4 bg-white/5 rounded-lg">
-                  <div className="flex items-center">
-                    <div className="w-4 h-4 bg-orange-400 rounded mr-3"></div>
-                    <span className="text-white" style={{ fontFamily: "Poppins, sans-serif" }}>
-                      Team & Advisors
-                    </span>
-                  </div>
-                  <span className="text-white font-bold">5%</span>
-                </div>
-              </div>
-              <div className="flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-64 h-64 rounded-full border-8 border-white/20 flex items-center justify-center mb-4">
-                    <img src="/new-blue-dog-mascot.png" alt="DOGCOIN" className="w-32 h-32" />
-                  </div>
-                  <p className="text-white/80 text-lg" style={{ fontFamily: "Poppins, sans-serif" }}>
-                    Fair & Transparent Distribution
+                {/* Liquidity */}
+                <div className="text-center p-6 bg-white/10 rounded-xl border border-white/20">
+                  <h3 className="text-white text-lg mb-2 font-semibold" style={{ fontFamily: "Poppins, sans-serif" }}>
+                    LIQUIDITY
+                  </h3>
+                  <p className="text-3xl font-bold text-red-400" style={{ fontFamily: "Fredoka One, cursive" }}>
+                    BURNT
                   </p>
                 </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
 
-        {/* Key Features */}
-        <div className="grid md:grid-cols-2 gap-6">
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
-            <CardHeader>
-              <CardTitle className="text-white text-2xl" style={{ fontFamily: "Poppins, sans-serif" }}>
-                🔒 Anti-Whale Protection
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-white/90" style={{ fontFamily: "Poppins, sans-serif" }}>
-              <p>
-                Maximum transaction limit of 1% of total supply to prevent market manipulation and ensure fair
-                distribution among all community members.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
-            <CardHeader>
-              <CardTitle className="text-white text-2xl" style={{ fontFamily: "Poppins, sans-serif" }}>
-                🎁 Holder Rewards
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-white/90" style={{ fontFamily: "Poppins, sans-serif" }}>
-              <p>
-                2% of every transaction is redistributed to existing holders, rewarding loyalty and encouraging
-                long-term holding.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
-            <CardHeader>
-              <CardTitle className="text-white text-2xl" style={{ fontFamily: "Poppins, sans-serif" }}>
-                🔥 Deflationary Mechanism
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-white/90" style={{ fontFamily: "Poppins, sans-serif" }}>
-              <p>
-                1% of every transaction is permanently burned, reducing total supply over time and increasing scarcity
-                for remaining tokens.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
-            <CardHeader>
-              <CardTitle className="text-white text-2xl" style={{ fontFamily: "Poppins, sans-serif" }}>
-                🐕 Charity Contribution
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-white/90" style={{ fontFamily: "Poppins, sans-serif" }}>
-              <p>
-                1% of every transaction goes directly to animal welfare organizations, making every trade contribute to
-                helping dogs in need.
-              </p>
+              {/* Contract Address */}
+              <div className="bg-white/5 rounded-xl p-4 border border-white/20">
+                <div className="text-center">
+                  <p className="text-white/70 text-sm mb-2" style={{ fontFamily: "Poppins, sans-serif" }}>
+                    Contract Address:
+                  </p>
+                  <p className="text-2xl font-bold text-yellow-400" style={{ fontFamily: "Fredoka One, cursive" }}>
+                    COMING SOON
+                  </p>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </div>
