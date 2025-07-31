@@ -162,10 +162,10 @@ export default function Component() {
 
   const renderAboutPage = () => (
     <div className="min-h-screen px-4 py-8 relative z-10">
-      {/* Back Button */}
+      {/* Back Button - Move to right side */}
       <Button
         onClick={() => handleNavigation("home")}
-        className="mb-8 bg-white/20 hover:bg-white/30 text-white border-2 border-white/50 backdrop-blur-sm"
+        className="fixed top-6 right-6 z-20 bg-white/20 hover:bg-white/30 text-white border-2 border-white/50 backdrop-blur-sm"
       >
         <ArrowLeft className="w-4 h-4 mr-2" />
         Back to Home
@@ -285,10 +285,10 @@ export default function Component() {
 
   const renderTokenomicsPage = () => (
     <div className="min-h-screen px-4 py-8 relative z-10">
-      {/* Back Button */}
+      {/* Back Button - Move to right side */}
       <Button
         onClick={() => handleNavigation("home")}
-        className="mb-8 bg-white/20 hover:bg-white/30 text-white border-2 border-white/50 backdrop-blur-sm"
+        className="fixed top-6 right-6 z-20 bg-white/20 hover:bg-white/30 text-white border-2 border-white/50 backdrop-blur-sm"
       >
         <ArrowLeft className="w-4 h-4 mr-2" />
         Back to Home
