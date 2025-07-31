@@ -1,5 +1,7 @@
 "use client"
 
+import type React from "react"
+
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -8,7 +10,12 @@ import { ArrowLeft } from "lucide-react"
 export default function Component() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [backgroundColor, setBackgroundColor] = useState("from-sky-300 to-sky-400")
-  const [currentPage, setCurrentPage] = useState("home") // home, about, tokenomics
+  const [currentPage, setCurrentPage] = useState("home") // home, about, tokenomics, memes
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [currentTime, setCurrentTime] = useState(0)
+  const [duration, setDuration] = useState(0)
+  const [volume, setVolume] = useState(0.7)
+  const [audioRef, setAudioRef] = useState<HTMLAudioElement | null>(null)
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -83,12 +90,80 @@ export default function Component() {
     },
   ]
 
+  const memes = [
+    { id: 1, src: "/memes/meme1.jpeg", title: "Starry Night Dog" },
+    { id: 2, src: "/memes/meme2.jpeg", title: "Zen Master Dog" },
+    { id: 3, src: "/memes/meme3.jpeg", title: "Grumpy Dog" },
+    { id: 4, src: "/memes/meme4.jpeg", title: "Space Explorer Dog" },
+    { id: 5, src: "/memes/meme5.jpeg", title: "Astronaut Dog" },
+    { id: 6, src: "/memes/meme6.jpeg", title: "Rich Dog" },
+    { id: 7, src: "/memes/meme7.jpeg", title: "Super Dog" },
+    { id: 8, src: "/memes/meme8.jpeg", title: "Green Candle Dog" },
+    { id: 9, src: "/memes/meme9.jpeg", title: "Bull Market Dog" },
+    { id: 10, src: "/memes/meme10.jpeg", title: "Street Dog" },
+  ]
+
   const handleColorChange = (gradient: string) => {
     setBackgroundColor(gradient)
   }
 
   const handleNavigation = (page: string) => {
     setCurrentPage(page)
+  }
+
+  const initializeAudio = () => {
+    if (!audioRef) {
+      const audio = new Audio("/song.mp3")
+      audio.volume = volume
+      audio.addEventListener("loadedmetadata", () => {
+        setDuration(audio.duration)
+      })
+      audio.addEventListener("timeupdate", () => {
+        setCurrentTime(audio.currentTime)
+      })
+      audio.addEventListener("ended", () => {
+        setIsPlaying(false)
+        setCurrentTime(0)
+      })
+      setAudioRef(audio)
+      return audio
+    }
+    return audioRef
+  }
+
+  const togglePlayPause = () => {
+    const audio = initializeAudio()
+    if (isPlaying) {
+      audio.pause()
+      setIsPlaying(false)
+    } else {
+      audio.play()
+      setIsPlaying(true)
+    }
+  }
+
+  const handleProgressChange = (e: React.MouseEvent<HTMLDivElement>) => {
+    const audio = initializeAudio()
+    const rect = e.currentTarget.getBoundingClientRect()
+    const clickX = e.clientX - rect.left
+    const newTime = (clickX / rect.width) * duration
+    audio.currentTime = newTime
+    setCurrentTime(newTime)
+  }
+
+  const handleVolumeChange = (e: React.MouseEvent<HTMLDivElement>) => {
+    const audio = initializeAudio()
+    const rect = e.currentTarget.getBoundingClientRect()
+    const clickX = e.clientX - rect.left
+    const newVolume = clickX / rect.width
+    audio.volume = newVolume
+    setVolume(newVolume)
+  }
+
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60)
+    const seconds = Math.floor(time % 60)
+    return `${minutes}:${seconds.toString().padStart(2, "0")}`
   }
 
   const renderHomePage = () => (
@@ -121,6 +196,8 @@ export default function Component() {
           { label: "DEX", action: () => {} },
           { label: "ABOUT", action: () => handleNavigation("about") },
           { label: "TOKENOMIC", action: () => handleNavigation("tokenomics") },
+          { label: "MEMES", action: () => handleNavigation("memes") },
+          { label: "MUSIC", action: () => handleNavigation("music") },
         ].map((item) => (
           <Button
             key={item.label}
@@ -317,6 +394,218 @@ export default function Component() {
     </div>
   )
 
+  const renderMemesPage = () => (
+    <div className="min-h-screen px-4 py-8 relative z-10">
+      {/* Back Button - Move to right side */}
+      <Button
+        onClick={() => handleNavigation("home")}
+        className="fixed top-4 right-4 md:top-6 md:right-6 z-20 bg-white/20 hover:bg-white/30 text-white border-2 border-white/50 backdrop-blur-sm text-sm md:text-base px-3 py-2 md:px-4 md:py-2"
+      >
+        <ArrowLeft className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
+        <span className="hidden sm:inline">Back to Home</span>
+        <span className="sm:hidden">Back</span>
+      </Button>
+
+      <div className="max-w-7xl mx-auto">
+        {/* Memes Header */}
+        <div className="text-center mb-8 md:mb-12">
+          <h1
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-white mb-4 md:mb-6 tracking-wider drop-shadow-lg px-4"
+            style={{
+              fontFamily: "Fredoka One, cursive",
+              textShadow: "2px 2px 0px #1E40AF, 4px 4px 0px #1E3A8A",
+            }}
+          >
+            MEMES GALLERY
+          </h1>
+          <p
+            className="text-blue-600 text-base sm:text-lg md:text-xl font-medium"
+            style={{ fontFamily: "Poppins, sans-serif" }}
+          >
+            The Best DOGCOIN Memes Collection
+          </p>
+        </div>
+
+        {/* Memes Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+          {memes.map((meme) => (
+            <Card
+              key={meme.id}
+              className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 cursor-pointer group"
+            >
+              <CardContent className="p-3 md:p-4">
+                <div className="aspect-square relative overflow-hidden rounded-lg mb-3">
+                  <img
+                    src={meme.src || "/placeholder.svg"}
+                    alt={meme.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <h3
+                  className="text-white text-sm md:text-base font-semibold text-center"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  {meme.title}
+                </h3>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+
+  const renderMusicPage = () => (
+    <div className="min-h-screen px-4 py-8 relative z-10">
+      {/* Back Button */}
+      <Button
+        onClick={() => handleNavigation("home")}
+        className="fixed top-4 right-4 md:top-6 md:right-6 z-20 bg-white/20 hover:bg-white/30 text-white border-2 border-white/50 backdrop-blur-sm text-sm md:text-base px-3 py-2 md:px-4 md:py-2"
+      >
+        <ArrowLeft className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
+        <span className="hidden sm:inline">Back to Home</span>
+        <span className="sm:hidden">Back</span>
+      </Button>
+
+      <div className="max-w-4xl mx-auto flex items-center justify-center min-h-screen">
+        <div className="text-center w-full">
+          {/* Music Header */}
+          <h1
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-white mb-8 md:mb-12 tracking-wider drop-shadow-lg px-4"
+            style={{
+              fontFamily: "Fredoka One, cursive",
+              textShadow: "2px 2px 0px #1E40AF, 4px 4px 0px #1E3A8A",
+            }}
+          >
+            DOGCOIN BEATS
+          </h1>
+
+          {/* Music Player Card */}
+          <Card className="bg-white/10 backdrop-blur-md border-white/20 max-w-2xl mx-auto mx-4">
+            <CardContent className="p-6 md:p-8">
+              {/* Song Title */}
+              <h2
+                className="text-2xl md:text-3xl font-bold text-white mb-2"
+                style={{ fontFamily: "Fredoka One, cursive" }}
+              >
+                LOYAL VIBES
+              </h2>
+              <p className="text-white/70 text-lg mb-8" style={{ fontFamily: "Poppins, sans-serif" }}>
+                DOGCOIN OFFICIAL
+              </p>
+
+              {/* Album Art Section */}
+              <div className="flex items-center justify-center mb-8">
+                {/* Main Album Art */}
+                <div
+                  className={`w-48 h-48 md:w-56 md:h-56 rounded-xl overflow-hidden border-4 border-white/30 shadow-2xl relative ${isPlaying ? "animate-pulse" : ""}`}
+                >
+                  <img src="/music-dog.jpeg" alt="DOGCOIN Music" className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                </div>
+              </div>
+
+              {/* Player Controls */}
+              <div className="flex items-center justify-center gap-6 mb-6">
+                <Button
+                  className="w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 border border-white/30"
+                  size="icon"
+                  onClick={() => {
+                    const audio = initializeAudio()
+                    audio.currentTime = 0
+                    setCurrentTime(0)
+                  }}
+                >
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M6 6h2v12H6zm3.5 6l8.5 6V6h-4z" />
+                  </svg>
+                </Button>
+
+                <Button
+                  className="w-16 h-16 rounded-full bg-yellow-400 hover:bg-yellow-500 text-black shadow-lg transform hover:scale-105 transition-all"
+                  size="icon"
+                  onClick={togglePlayPause}
+                >
+                  {isPlaying ? (
+                    <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                    </svg>
+                  ) : (
+                    <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  )}
+                </Button>
+
+                <Button
+                  className="w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 border border-white/30"
+                  size="icon"
+                  onClick={() => {
+                    const audio = initializeAudio()
+                    audio.currentTime = Math.min(audio.currentTime + 10, duration)
+                  }}
+                >
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+                  </svg>
+                </Button>
+              </div>
+
+              {/* Progress Bar */}
+              <div className="mb-4">
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="text-white/70 text-sm">{formatTime(currentTime)}</span>
+                  <div
+                    className="flex-1 bg-white/20 rounded-full h-2 relative cursor-pointer"
+                    onClick={handleProgressChange}
+                  >
+                    <div
+                      className="bg-yellow-400 h-2 rounded-full relative transition-all duration-100"
+                      style={{ width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%` }}
+                    >
+                      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg"></div>
+                    </div>
+                  </div>
+                  <span className="text-white/70 text-sm">{formatTime(duration)}</span>
+                </div>
+              </div>
+
+              {/* Volume Control */}
+              <div className="flex items-center gap-3 mb-6">
+                <svg className="w-5 h-5 text-white/70" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+                </svg>
+                <div
+                  className="flex-1 bg-white/20 rounded-full h-2 relative cursor-pointer"
+                  onClick={handleVolumeChange}
+                >
+                  <div
+                    className="bg-white h-2 rounded-full relative transition-all duration-100"
+                    style={{ width: `${volume * 100}%` }}
+                  >
+                    <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg"></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Now Playing Status */}
+              <div className="text-center">
+                <div
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${isPlaying ? "bg-green-500/20 text-green-400" : "bg-white/10 text-white/70"} transition-all`}
+                >
+                  <div
+                    className={`w-2 h-2 rounded-full ${isPlaying ? "bg-green-400 animate-pulse" : "bg-white/50"}`}
+                  ></div>
+                  <span className="text-sm font-medium">{isPlaying ? "Now Playing" : "Paused"}</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
+  )
+
   return (
     <div
       className={`min-h-screen bg-gradient-to-b ${backgroundColor} relative overflow-hidden custom-cursor transition-all duration-1000 ease-in-out`}
@@ -366,6 +655,8 @@ export default function Component() {
         {currentPage === "home" && renderHomePage()}
         {currentPage === "about" && renderAboutPage()}
         {currentPage === "tokenomics" && renderTokenomicsPage()}
+        {currentPage === "memes" && renderMemesPage()}
+        {currentPage === "music" && renderMusicPage()}
       </div>
 
       {/* Custom Cursor Styles */}
