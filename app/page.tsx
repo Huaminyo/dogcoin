@@ -92,20 +92,20 @@ export default function Component() {
   }
 
   const renderHomePage = () => (
-    <div className="flex flex-col items-center justify-center min-h-screen px-4 relative z-10">
+    <div className="flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 md:px-8 relative z-10">
       {/* Logo */}
-      <div className="text-center mb-8">
+      <div className="text-center mb-6 md:mb-8 px-2">
         <h1
-          className="text-6xl md:text-8xl lg:text-9xl text-white mb-4 tracking-wider drop-shadow-lg"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-9xl text-white mb-2 md:mb-4 tracking-wider drop-shadow-lg"
           style={{
             fontFamily: "Fredoka One, cursive",
-            textShadow: "4px 4px 0px #1E40AF, 8px 8px 0px #1E3A8A",
+            textShadow: "2px 2px 0px #1E40AF, 4px 4px 0px #1E3A8A",
           }}
         >
           <span className="inline-block transform hover:scale-105 transition-transform duration-300">DOGCOIN</span>
         </h1>
         <p
-          className="text-blue-600 text-xl md:text-2xl font-medium tracking-widest"
+          className="text-blue-600 text-base sm:text-lg md:text-xl lg:text-2xl font-medium tracking-widest px-4"
           style={{ fontFamily: "Poppins, sans-serif" }}
         >
           THE SPIRIT OF LOYALTY
@@ -113,7 +113,7 @@ export default function Component() {
       </div>
 
       {/* Navigation Buttons */}
-      <div className="flex flex-wrap justify-center gap-4 mb-8">
+      <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-6 md:mb-8 px-4">
         {[
           { label: "BUY", action: () => {} },
           { label: "TG", action: () => {} },
@@ -125,7 +125,7 @@ export default function Component() {
           <Button
             key={item.label}
             onClick={item.action}
-            className="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded-full text-lg border-4 border-black shadow-lg transform hover:scale-105 transition-all duration-200 hover:shadow-xl cursor-pointer"
+            className="bg-yellow-400 hover:bg-yellow-500 text-black px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full text-sm sm:text-base md:text-lg border-2 md:border-4 border-black shadow-lg transform hover:scale-105 transition-all duration-200 hover:shadow-xl cursor-pointer"
             style={{
               fontFamily: "Montserrat, sans-serif",
               fontWeight: "600",
@@ -137,21 +137,21 @@ export default function Component() {
       </div>
 
       {/* Interactive Color Circles */}
-      <div className="flex justify-center gap-3 mb-16">
+      <div className="flex justify-center gap-2 sm:gap-3 mb-8 md:mb-16 px-4">
         {colorCircles.map((circle, index) => (
           <div
             key={index}
             onClick={() => handleColorChange(circle.gradient)}
-            className={`w-6 h-6 ${circle.color} rounded-full border-2 border-white shadow-lg cursor-pointer transform hover:scale-125 transition-all duration-200 hover:shadow-xl active:scale-110`}
+            className={`w-5 h-5 sm:w-6 sm:h-6 ${circle.color} rounded-full border-2 border-white shadow-lg cursor-pointer transform hover:scale-125 transition-all duration-200 hover:shadow-xl active:scale-110`}
             title={`Change to ${circle.name} theme`}
           />
         ))}
       </div>
 
       {/* Secondary Text */}
-      <div className="text-center">
+      <div className="text-center px-4">
         <h2
-          className="text-3xl md:text-4xl font-medium text-white/80 tracking-wider"
+          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium text-white/80 tracking-wider"
           style={{ fontFamily: "Poppins, sans-serif" }}
         >
           THE SPIRIT WITHIN YOU
@@ -165,30 +165,31 @@ export default function Component() {
       {/* Back Button - Move to right side */}
       <Button
         onClick={() => handleNavigation("home")}
-        className="fixed top-6 right-6 z-20 bg-white/20 hover:bg-white/30 text-white border-2 border-white/50 backdrop-blur-sm"
+        className="fixed top-4 right-4 md:top-6 md:right-6 z-20 bg-white/20 hover:bg-white/30 text-white border-2 border-white/50 backdrop-blur-sm text-sm md:text-base px-3 py-2 md:px-4 md:py-2"
       >
-        <ArrowLeft className="w-4 h-4 mr-2" />
-        Back to Home
+        <ArrowLeft className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
+        <span className="hidden sm:inline">Back to Home</span>
+        <span className="sm:hidden">Back</span>
       </Button>
 
       <div className="max-w-4xl mx-auto flex items-center justify-center min-h-screen">
         {/* About Header */}
         <div className="text-center mb-12">
           <h1
-            className="text-5xl md:text-7xl text-white mb-8 tracking-wider drop-shadow-lg"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-white mb-6 md:mb-8 tracking-wider drop-shadow-lg px-4"
             style={{
               fontFamily: "Fredoka One, cursive",
-              textShadow: "4px 4px 0px #1E40AF, 8px 8px 0px #1E3A8A",
+              textShadow: "2px 2px 0px #1E40AF, 4px 4px 0px #1E3A8A",
             }}
           >
             ABOUT DOGCOIN
           </h1>
 
           {/* Single About Card */}
-          <Card className="bg-white/10 backdrop-blur-md border-white/20 max-w-3xl mx-auto">
-            <CardContent className="p-8">
+          <Card className="bg-white/10 backdrop-blur-md border-white/20 max-w-3xl mx-auto mx-4">
+            <CardContent className="p-4 sm:p-6 md:p-8">
               <p
-                className="text-white/90 text-lg md:text-xl leading-relaxed text-left"
+                className="text-white/90 text-base sm:text-lg md:text-xl leading-relaxed text-left"
                 style={{ fontFamily: "Poppins, sans-serif" }}
               >
                 <strong className="text-yellow-400">DOGCOIN</strong> is the most loyal meme cryptocurrency built on the{" "}
@@ -222,55 +223,74 @@ export default function Component() {
       {/* Back Button - Move to right side */}
       <Button
         onClick={() => handleNavigation("home")}
-        className="fixed top-6 right-6 z-20 bg-white/20 hover:bg-white/30 text-white border-2 border-white/50 backdrop-blur-sm"
+        className="fixed top-4 right-4 md:top-6 md:right-6 z-20 bg-white/20 hover:bg-white/30 text-white border-2 border-white/50 backdrop-blur-sm text-sm md:text-base px-3 py-2 md:px-4 md:py-2"
       >
-        <ArrowLeft className="w-4 h-4 mr-2" />
-        Back to Home
+        <ArrowLeft className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
+        <span className="hidden sm:inline">Back to Home</span>
+        <span className="sm:hidden">Back</span>
       </Button>
 
       <div className="max-w-4xl mx-auto flex items-center justify-center min-h-screen">
         {/* Tokenomics Header */}
         <div className="text-center">
           <h1
-            className="text-5xl md:text-7xl text-white mb-12 tracking-wider drop-shadow-lg"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-white mb-8 md:mb-12 tracking-wider drop-shadow-lg px-4"
             style={{
               fontFamily: "Fredoka One, cursive",
-              textShadow: "4px 4px 0px #1E40AF, 8px 8px 0px #1E3A8A",
+              textShadow: "2px 2px 0px #1E40AF, 4px 4px 0px #1E3A8A",
             }}
           >
             TOKENOMICS
           </h1>
 
           {/* Single Tokenomics Card */}
-          <Card className="bg-white/10 backdrop-blur-md border-white/20 max-w-2xl mx-auto">
-            <CardContent className="p-8">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <Card className="bg-white/10 backdrop-blur-md border-white/20 max-w-2xl mx-auto mx-4">
+            <CardContent className="p-4 sm:p-6 md:p-8">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
                 {/* Supply */}
-                <div className="text-center p-6 bg-white/10 rounded-xl border border-white/20">
-                  <h3 className="text-white text-lg mb-2 font-semibold" style={{ fontFamily: "Poppins, sans-serif" }}>
+                <div className="text-center p-4 md:p-6 bg-white/10 rounded-xl border border-white/20">
+                  <h3
+                    className="text-white text-base md:text-lg mb-2 font-semibold"
+                    style={{ fontFamily: "Poppins, sans-serif" }}
+                  >
                     SUPPLY
                   </h3>
-                  <p className="text-3xl font-bold text-yellow-400" style={{ fontFamily: "Fredoka One, cursive" }}>
+                  <p
+                    className="text-2xl md:text-3xl font-bold text-yellow-400"
+                    style={{ fontFamily: "Fredoka One, cursive" }}
+                  >
                     1B
                   </p>
                 </div>
 
                 {/* Taxes */}
-                <div className="text-center p-6 bg-white/10 rounded-xl border border-white/20">
-                  <h3 className="text-white text-lg mb-2 font-semibold" style={{ fontFamily: "Poppins, sans-serif" }}>
+                <div className="text-center p-4 md:p-6 bg-white/10 rounded-xl border border-white/20">
+                  <h3
+                    className="text-white text-base md:text-lg mb-2 font-semibold"
+                    style={{ fontFamily: "Poppins, sans-serif" }}
+                  >
                     TAXES
                   </h3>
-                  <p className="text-3xl font-bold text-green-400" style={{ fontFamily: "Fredoka One, cursive" }}>
+                  <p
+                    className="text-2xl md:text-3xl font-bold text-green-400"
+                    style={{ fontFamily: "Fredoka One, cursive" }}
+                  >
                     0%
                   </p>
                 </div>
 
                 {/* Liquidity */}
-                <div className="text-center p-6 bg-white/10 rounded-xl border border-white/20">
-                  <h3 className="text-white text-lg mb-2 font-semibold" style={{ fontFamily: "Poppins, sans-serif" }}>
+                <div className="text-center p-4 md:p-6 bg-white/10 rounded-xl border border-white/20">
+                  <h3
+                    className="text-white text-base md:text-lg mb-2 font-semibold"
+                    style={{ fontFamily: "Poppins, sans-serif" }}
+                  >
                     LIQUIDITY
                   </h3>
-                  <p className="text-3xl font-bold text-red-400" style={{ fontFamily: "Fredoka One, cursive" }}>
+                  <p
+                    className="text-2xl md:text-3xl font-bold text-red-400"
+                    style={{ fontFamily: "Fredoka One, cursive" }}
+                  >
                     BURNT
                   </p>
                 </div>
@@ -282,7 +302,10 @@ export default function Component() {
                   <p className="text-white/70 text-sm mb-2" style={{ fontFamily: "Poppins, sans-serif" }}>
                     Contract Address:
                   </p>
-                  <p className="text-2xl font-bold text-yellow-400" style={{ fontFamily: "Fredoka One, cursive" }}>
+                  <p
+                    className="text-xl md:text-2xl font-bold text-yellow-400"
+                    style={{ fontFamily: "Fredoka One, cursive" }}
+                  >
                     COMING SOON
                   </p>
                 </div>
@@ -307,22 +330,22 @@ export default function Component() {
       />
 
       {/* Dog Logo - Top Left Corner */}
-      <div className="absolute top-6 left-6 z-20">
+      <div className="absolute top-4 left-4 md:top-6 md:left-6 z-20">
         <img
           src="/new-blue-dog-mascot.png"
           alt="DOGCOIN Mascot"
-          className="w-16 h-16 md:w-20 md:h-20 hover:scale-110 transition-transform duration-300 cursor-pointer"
+          className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 hover:scale-110 transition-transform duration-300 cursor-pointer"
           style={{ filter: "drop-shadow(0 0 0 transparent)" }}
           onClick={() => handleNavigation("home")}
         />
       </div>
 
-      {/* Floating Clouds - Only show on home page */}
+      {/* Floating Clouds - Only show on home page and hide some on mobile */}
       {currentPage === "home" &&
-        clouds.map((cloud) => (
+        clouds.map((cloud, index) => (
           <div
             key={cloud.id}
-            className={`absolute ${cloud.size} opacity-90 animate-drift-left`}
+            className={`absolute ${cloud.size} opacity-90 animate-drift-left ${index > 8 ? "hidden sm:block" : ""}`}
             style={{
               top: cloud.top,
               left: cloud.left,
